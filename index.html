@@ -7,18 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --sunrise-1: #FF6B35;
-  --sunrise-2: #F7C948;
-  --sunrise-3: #FFA62B;
-  --dawn-dark: #1a1a2e;
-  --dawn-mid: #16213e;
-  --dawn-light: #0f3460;
-  --text-primary: #f0f0f0;
-  --text-secondary: #a8b4c4;
-  --text-accent: #F7C948;
-  --card-bg: rgba(255,255,255,0.06);
-  --card-border: rgba(255,255,255,0.08);
-  --glow: rgba(247,201,72,0.15);
+  --sunrise-1: #E8560A;
+  --sunrise-2: #D4940A;
+  --sunrise-3: #E87A1A;
+  --warm-50: #FFFBF5;
+  --warm-100: #FFF5E8;
+  --warm-200: #FFE8CC;
+  --warm-300: #FFD4A3;
+  --gray-50: #FAFAFA;
+  --gray-100: #F4F4F5;
+  --gray-200: #E4E4E7;
+  --gray-300: #D4D4D8;
+  --gray-500: #71717A;
+  --gray-600: #52525B;
+  --gray-700: #3F3F46;
+  --gray-800: #27272A;
+  --gray-900: #18181B;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a6a;
+  --text-accent: #D4640A;
+  --card-bg: #ffffff;
+  --card-border: #e8e8ec;
+  --page-bg: #FAFAF8;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +40,7 @@ html {
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: var(--dawn-dark);
+  background: var(--page-bg);
   color: var(--text-primary);
   overflow-x: hidden;
 }
@@ -70,37 +80,43 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+  background: var(--gray-300);
   cursor: pointer;
   transition: all 0.3s;
   border: none;
 }
 
 .nav-dot:hover, .nav-dot.active {
-  background: var(--sunrise-2);
+  background: var(--sunrise-1);
   transform: scale(1.4);
-  box-shadow: 0 0 12px var(--glow);
+  box-shadow: 0 0 12px rgba(232,86,10,0.25);
 }
 
 /* Slide 1 - Cover */
 .slide-cover {
-  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #2a1a4e 70%, #3a1a3e 100%);
+  background: linear-gradient(160deg, #FFFBF5 0%, #FFF8F0 40%, #FFF2E5 100%);
 }
 
 .slide-cover::before {
   content: '';
   position: absolute;
-  bottom: -20%;
-  left: -10%;
-  width: 120%;
-  height: 60%;
-  background: radial-gradient(ellipse at center, rgba(255,107,53,0.25) 0%, rgba(247,201,72,0.1) 40%, transparent 70%);
-  animation: sunriseGlow 4s ease-in-out infinite alternate;
+  top: -30%;
+  right: -15%;
+  width: 70%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(255,180,80,0.12) 0%, rgba(255,140,40,0.06) 50%, transparent 70%);
+  border-radius: 50%;
 }
 
-@keyframes sunriseGlow {
-  0% { opacity: 0.6; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(-10px); }
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(255,200,100,0.1) 0%, transparent 60%);
+  border-radius: 50%;
 }
 
 .cover-tag {
@@ -109,7 +125,7 @@ body {
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--sunrise-2);
+  color: var(--sunrise-1);
   margin-bottom: 24px;
   opacity: 0;
   animation: fadeUp 0.8s ease forwards 0.3s;
@@ -121,12 +137,13 @@ body {
   font-weight: 900;
   line-height: 1.15;
   margin-bottom: 24px;
+  color: var(--gray-900);
   opacity: 0;
   animation: fadeUp 0.8s ease forwards 0.5s;
 }
 
 .cover-title .accent {
-  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -170,7 +187,7 @@ body {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  color: var(--sunrise-3);
+  color: var(--sunrise-1);
   margin-bottom: 12px;
   text-transform: uppercase;
 }
@@ -181,6 +198,7 @@ body {
   font-weight: 900;
   margin-bottom: 16px;
   line-height: 1.2;
+  color: var(--gray-900);
 }
 
 .section-lead {
@@ -204,13 +222,13 @@ body {
   border-radius: 16px;
   padding: 32px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .card:hover {
-  border-color: rgba(247,201,72,0.3);
+  border-color: rgba(232,86,10,0.2);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
 }
 
 .card-icon {
@@ -223,6 +241,7 @@ body {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
+  color: var(--gray-800);
 }
 
 .card-text {
@@ -242,7 +261,7 @@ body {
   text-align: left;
   font-size: 12px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--gray-500);
   padding: 12px 20px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -250,13 +269,17 @@ body {
 
 .revenue-table td {
   padding: 18px 20px;
-  background: var(--card-bg);
+  background: white;
   font-size: 15px;
   border: none;
+  color: var(--gray-700);
 }
 
 .revenue-table tr td:first-child {
   border-radius: 12px 0 0 12px;
+  border-left: 1px solid var(--card-border);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .revenue-table tr td:last-child {
@@ -264,6 +287,14 @@ body {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   color: var(--text-accent);
+  border-right: 1px solid var(--card-border);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.revenue-table tr td:not(:first-child):not(:last-child) {
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .revenue-total {
@@ -282,7 +313,7 @@ body {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 900;
-  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -301,7 +332,7 @@ body {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--sunrise-2), var(--sunrise-1), transparent);
+  background: linear-gradient(to bottom, var(--sunrise-1), var(--sunrise-3), var(--gray-200));
 }
 
 .timeline-item {
@@ -316,15 +347,15 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--sunrise-2);
-  box-shadow: 0 0 16px rgba(247,201,72,0.5);
+  background: var(--sunrise-1);
+  box-shadow: 0 0 0 4px rgba(232,86,10,0.15);
 }
 
 .timeline-period {
   font-family: 'Outfit', sans-serif;
   font-size: 13px;
   font-weight: 700;
-  color: var(--sunrise-3);
+  color: var(--sunrise-1);
   margin-bottom: 6px;
   letter-spacing: 1px;
 }
@@ -334,6 +365,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
+  color: var(--gray-800);
 }
 
 .timeline-desc {
@@ -350,12 +382,13 @@ body {
 }
 
 .role-card {
-  background: var(--card-bg);
+  background: white;
   border: 1px solid var(--card-border);
   border-radius: 20px;
   padding: 36px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .role-card::before {
@@ -368,11 +401,11 @@ body {
 }
 
 .role-card.role-influencer::before {
-  background: linear-gradient(90deg, var(--sunrise-1), var(--sunrise-2));
+  background: linear-gradient(90deg, var(--sunrise-1), var(--sunrise-3));
 }
 
 .role-card.role-dev::before {
-  background: linear-gradient(90deg, #4ecdc4, #44a08d);
+  background: linear-gradient(90deg, #0d9488, #14b8a6);
 }
 
 .role-name {
@@ -380,6 +413,7 @@ body {
   font-size: 22px;
   font-weight: 900;
   margin-bottom: 20px;
+  color: var(--gray-800);
 }
 
 .role-list {
@@ -399,14 +433,14 @@ body {
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--sunrise-2);
+  color: var(--sunrise-1);
   font-weight: 700;
 }
 
 /* Profit Box */
 .profit-box {
-  background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(247,201,72,0.1));
-  border: 1px solid rgba(247,201,72,0.2);
+  background: linear-gradient(135deg, var(--warm-100), var(--warm-50));
+  border: 1px solid var(--warm-200);
   border-radius: 20px;
   padding: 40px;
   text-align: center;
@@ -423,7 +457,7 @@ body {
   font-family: 'Outfit', sans-serif;
   font-size: 48px;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -444,11 +478,12 @@ body {
 }
 
 .feature-pill {
-  background: var(--card-bg);
+  background: white;
   border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 20px;
   text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .feature-pill-icon {
@@ -480,33 +515,32 @@ body {
   font-weight: 700;
   font-size: 15px;
   text-align: center;
-  position: relative;
 }
 
 .funnel-step.f1 {
   width: 90%;
-  background: rgba(247,201,72,0.1);
-  border: 1px solid rgba(247,201,72,0.2);
-  color: var(--sunrise-2);
+  background: var(--warm-100);
+  border: 1px solid var(--warm-200);
+  color: var(--sunrise-3);
 }
 
 .funnel-step.f2 {
   width: 70%;
-  background: rgba(255,166,43,0.1);
-  border: 1px solid rgba(255,166,43,0.2);
+  background: var(--warm-200);
+  border: 1px solid var(--warm-300);
   color: var(--sunrise-3);
 }
 
 .funnel-step.f3 {
   width: 50%;
-  background: rgba(255,107,53,0.15);
-  border: 1px solid rgba(255,107,53,0.3);
+  background: linear-gradient(135deg, rgba(232,86,10,0.1), rgba(232,122,26,0.1));
+  border: 1px solid rgba(232,86,10,0.25);
   color: var(--sunrise-1);
 }
 
 .funnel-arrow {
   font-size: 20px;
-  color: var(--text-secondary);
+  color: var(--gray-300);
 }
 
 /* Tech stack */
@@ -517,18 +551,19 @@ body {
 }
 
 .tech-item {
-  background: var(--card-bg);
+  background: white;
   border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 20px 24px;
   display: flex;
   align-items: center;
   gap: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .tech-label {
   font-size: 11px;
-  color: var(--text-secondary);
+  color: var(--gray-500);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -537,6 +572,7 @@ body {
   font-size: 15px;
   font-weight: 700;
   margin-top: 2px;
+  color: var(--gray-800);
 }
 
 .tech-icon {
@@ -546,7 +582,7 @@ body {
 
 /* CTA */
 .slide-cta {
-  background: linear-gradient(135deg, #1a1a3e 0%, #2a1a4e 50%, #1a1a2e 100%);
+  background: linear-gradient(160deg, #FFFBF5 0%, #FFF5E8 50%, #FFF0DC 100%);
 }
 
 .cta-text {
@@ -556,10 +592,11 @@ body {
   line-height: 1.4;
   text-align: center;
   margin-bottom: 24px;
+  color: var(--gray-900);
 }
 
 .cta-text .accent {
-  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -572,13 +609,95 @@ body {
   line-height: 1.8;
 }
 
-/* Slide BGs */
+/* Phone Mockups */
+.phone-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone {
+  width: 220px;
+  height: 460px;
+  background: #FFFBF5;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.phone-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.ph { padding: 0 10px; }
+.ph-status { display: flex; justify-content: space-between; padding: 8px 14px 2px; font-size: 10px; font-weight: 500; color: #333; }
+.ph-title { font-size: 16px; font-weight: 900; color: #1a1a1a; margin: 0; padding: 10px 14px 4px; }
+.ph-sub { font-size: 10px; color: #888; margin: 0; padding: 0 14px; }
+
+.ph-ai {
+  margin: 8px 10px;
+  background: linear-gradient(135deg, #FFF5E8, #FFF0DC);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ph-ai-badge { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+.ph-ai-dot { width: 18px; height: 18px; border-radius: 50%; background: #E8560A; display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; }
+.ph-ai-badge span { font-size: 9px; font-weight: 500; color: #E8560A; }
+.ph-ai p { font-size: 10px; color: #4a3a2a; line-height: 1.5; margin: 0; }
+
+.ph-stats { margin: 0 10px 8px; display: flex; gap: 5px; }
+.ph-stat { flex: 1; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 7px; text-align: center; }
+.ph-stat .l { font-size: 8px; color: #888; margin: 0; }
+.ph-stat .v { font-size: 13px; font-weight: 700; color: #1a1a1a; margin: 0; }
+.ph-stat .d { font-size: 8px; margin: 0; }
+.ph-stat .d.up { color: #34C759; }
+.ph-stat .d.down { color: #E8560A; }
+
+.ph-list { margin: 0 10px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; overflow: hidden; }
+.ph-li { display: flex; align-items: center; gap: 6px; padding: 7px 8px; border-bottom: 0.5px solid #f0f0f0; font-size: 10px; }
+.ph-li:last-child { border-bottom: none; }
+.ph-dot-done { width: 16px; height: 16px; border-radius: 50%; background: #34C759; color: white; font-size: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ph-dot-active { width: 16px; height: 16px; border-radius: 50%; background: #E8560A; color: white; font-size: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ph-dot-todo { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #ddd; flex-shrink: 0; }
+
+.ph-nav { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-around; padding: 6px 0 12px; background: white; border-top: 0.5px solid #eee; }
+
+/* Bar chart in phone */
+.ph-bars { display: flex; align-items: flex-end; justify-content: space-between; height: 70px; gap: 4px; }
+.ph-bar { flex: 1; border-radius: 3px 3px 0 0; }
+.ph-bar-label { font-size: 8px; color: #888; text-align: center; margin-top: 2px; }
+
+/* Heatmap */
+.ph-heatmap { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.ph-hm-cell { aspect-ratio: 1; border-radius: 3px; }
+
+/* Sleep stages */
+.ph-sleep-bar { display: flex; height: 20px; border-radius: 4px; overflow: hidden; gap: 1px; }
+
+/* Streak card */
+.ph-streak { margin: 8px 10px; background: linear-gradient(135deg, #E8560A, #D4940A); border-radius: 12px; padding: 14px; color: white; text-align: center; }
+.ph-streak .num { font-size: 32px; font-weight: 900; margin: 0; line-height: 1; }
+
+/* Alternating BGs */
 .slide:nth-child(even) {
-  background: linear-gradient(160deg, #0f0f23 0%, #1a1a2e 100%);
+  background: white;
 }
 
 .slide:nth-child(odd) {
-  background: linear-gradient(160deg, #141428 0%, #1e1e38 100%);
+  background: var(--page-bg);
 }
 
 /* Responsive */
@@ -687,10 +806,378 @@ body {
   </div>
 </section>
 
-<!-- Slide 4: Market Position -->
+<!-- Slide 4: App Mockups - Core -->
 <section class="slide" id="slide-3">
   <div class="slide-inner">
-    <div class="section-num">03 — 市場ポジション</div>
+    <div class="section-num">03 — アプリイメージ</div>
+    <h2 class="section-title">コア体験の画面デザイン</h2>
+    <p class="section-lead">AIコーチング、ゲーミフィケーション、ジャーナル。3つのコア体験。</p>
+    <div class="phone-row">
+      <!-- Phone 1: Home/AI Coach -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>6:02</span><span>100%</span></div>
+          <div style="padding: 8px 14px 2px;"><p style="font-size: 11px; color: #E8560A; font-weight: 500; margin: 0;">Good morning</p></div>
+          <p class="ph-title" style="padding-top: 2px; font-size: 17px; line-height: 1.2;">今日も最高の<br>朝を始めよう</p>
+          <div class="ph-ai">
+            <div class="ph-ai-badge"><div class="ph-ai-dot">✦</div><span>AIコーチ</span></div>
+            <p>昨夜の睡眠は6.5時間、深い睡眠が少なめ。今朝は<strong>5分間の呼吸法</strong>から始めましょう。</p>
+          </div>
+          <div class="ph-stats">
+            <div class="ph-stat"><p class="l">睡眠</p><p class="v">6.5h</p></div>
+            <div class="ph-stat"><p class="l">心拍</p><p class="v">62</p></div>
+            <div class="ph-stat"><p class="l">歩数</p><p class="v">--</p></div>
+          </div>
+          <p style="font-size: 10px; color: #888; margin: 0 0 4px; padding: 0 14px;">朝ルーティン</p>
+          <div class="ph-list">
+            <div class="ph-li"><div class="ph-dot-done">✓</div><span style="flex:1; color: #1a1a1a;">起床・水を飲む</span><span style="color:#aaa; font-size:9px;">2分</span></div>
+            <div class="ph-li" style="background: #FFF8F0;"><div class="ph-dot-active">▶</div><span style="flex:1; color: #1a1a1a; font-weight: 500;">呼吸法・瞑想</span><span style="color:#E8560A; font-size:9px; font-weight:500;">5分</span></div>
+            <div class="ph-li"><div class="ph-dot-todo"></div><span style="flex:1; color: #888;">ストレッチ</span><span style="color:#aaa; font-size:9px;">5分</span></div>
+            <div class="ph-li"><div class="ph-dot-todo"></div><span style="flex:1; color: #888;">ジャーナル記入</span><span style="color:#aaa; font-size:9px;">5分</span></div>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">ホーム / AIコーチ</div>
+      </div>
+      <!-- Phone 2: Gamification -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>6:18</span><span>98%</span></div>
+          <p class="ph-title">マイ進捗</p>
+          <div class="ph-streak">
+            <p style="font-size: 10px; opacity: 0.85; margin: 0;">連続達成</p>
+            <p class="num">14日</p>
+            <p style="font-size: 9px; opacity: 0.75; margin: 2px 0 0;">自己ベスト更新中!</p>
+          </div>
+          <div style="margin: 0 10px 8px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 5px;"><span style="font-weight: 500;">Lv.5 アーリーバード</span><span style="color: #E8560A; font-weight: 700;">1,240 pt</span></div>
+            <div style="height: 5px; background: #f0ebe4; border-radius: 3px;"><div style="width: 65%; height: 100%; background: linear-gradient(90deg, #E8560A, #D4940A); border-radius: 3px;"></div></div>
+            <p style="font-size: 9px; color: #888; margin: 4px 0 0;">Lv.6まで あと 260pt</p>
+          </div>
+          <p style="font-size: 10px; color: #888; margin: 0 0 4px; padding: 0 14px;">今週の目標</p>
+          <div class="ph-list">
+            <div class="ph-li" style="flex-direction: column; align-items: stretch; gap: 4px;">
+              <div style="display: flex; justify-content: space-between;"><span>朝6時起き</span><span style="color: #34C759; font-weight: 500;">5/7</span></div>
+              <div style="height: 3px; background: #f0f0f0; border-radius: 2px;"><div style="width: 71%; height: 100%; background: #34C759; border-radius: 2px;"></div></div>
+            </div>
+            <div class="ph-li" style="flex-direction: column; align-items: stretch; gap: 4px;">
+              <div style="display: flex; justify-content: space-between;"><span>瞑想5分</span><span style="color: #E8560A; font-weight: 500;">3/7</span></div>
+              <div style="height: 3px; background: #f0f0f0; border-radius: 2px;"><div style="width: 43%; height: 100%; background: #E8560A; border-radius: 2px;"></div></div>
+            </div>
+            <div class="ph-li" style="flex-direction: column; align-items: stretch; gap: 4px;">
+              <div style="display: flex; justify-content: space-between;"><span>ジャーナル記入</span><span style="color: #34C759; font-weight: 500;">6/7</span></div>
+              <div style="height: 3px; background: #f0f0f0; border-radius: 2px;"><div style="width: 86%; height: 100%; background: #34C759; border-radius: 2px;"></div></div>
+            </div>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">ゲーミフィケーション</div>
+      </div>
+      <!-- Phone 3: Journal -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>6:22</span><span>97%</span></div>
+          <p class="ph-title">ジャーナル</p>
+          <p class="ph-sub">4月2日（水）</p>
+          <div class="ph-ai" style="margin-top: 8px;">
+            <div class="ph-ai-badge"><div class="ph-ai-dot">✦</div><span>今日の問いかけ</span></div>
+            <p style="font-weight: 500;">今日、最も大切にしたい「ひとつのこと」は何ですか？</p>
+          </div>
+          <div style="margin: 0 10px 8px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px; min-height: 60px;">
+            <p style="font-size: 10px; color: #1a1a1a; line-height: 1.6; margin: 0;">午前中に企画書を仕上げること。昨日は集中できなかったから、今朝のうちに…<span style="color: #ccc;">|</span></p>
+          </div>
+          <p style="font-size: 10px; color: #888; margin: 0 0 4px; padding: 0 14px;">今朝の気分</p>
+          <div style="display: flex; gap: 5px; margin: 0 10px 8px;">
+            <div style="flex: 1; background: white; border: 1.5px solid #E8560A; border-radius: 8px; padding: 6px; text-align: center;"><div style="font-size: 18px;">😊</div><span style="font-size: 8px; color: #E8560A; font-weight: 500;">良い</span></div>
+            <div style="flex: 1; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 6px; text-align: center;"><div style="font-size: 18px;">😐</div><span style="font-size: 8px; color: #aaa;">普通</span></div>
+            <div style="flex: 1; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 6px; text-align: center;"><div style="font-size: 18px;">😔</div><span style="font-size: 8px; color: #aaa;">低め</span></div>
+          </div>
+          <div style="margin: 0 10px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px;">
+            <p style="font-size: 9px; font-weight: 500; color: #888; margin: 0 0 4px;">AIインサイト</p>
+            <p style="font-size: 9px; color: #5a5a6a; line-height: 1.5; margin: 0;">先週のジャーナルでも「集中」がテーマに。朝の最初の1時間をディープワークに充てるパターンが効果的かも。</p>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;background:#E8560A;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">ジャーナル</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Data Screens -->
+<section class="slide" id="slide-4">
+  <div class="slide-inner">
+    <div class="section-num">04 — データ & 分析</div>
+    <h2 class="section-title">成長が「見える」ダッシュボード</h2>
+    <p class="section-lead">HealthKitデータとAI分析で、自分の変化を実感できる。</p>
+    <div class="phone-row">
+      <!-- Phone 4: Weekly Report -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>7:30</span><span>85%</span></div>
+          <p class="ph-title">ウィークリーレポート</p>
+          <p class="ph-sub">3/27 — 4/2</p>
+          <div class="ph-streak" style="margin-top: 8px; padding: 12px;">
+            <p style="font-size: 9px; opacity: 0.85; margin: 0;">今週のスコア</p>
+            <p class="num" style="font-size: 36px;">87</p>
+            <p style="font-size: 9px; opacity: 0.75; margin: 2px 0 0;">先週比 +12 ポイント</p>
+          </div>
+          <div style="margin: 0 10px 8px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 6px;"><span style="font-weight: 500;">ルーティン達成率</span><span style="color: #E8560A; font-weight: 700;">84%</span></div>
+            <div class="ph-bars">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#E8560A;height:42px;"></div><span class="ph-bar-label">月</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#E8560A;height:56px;"></div><span class="ph-bar-label">火</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#E8560A;height:70px;"></div><span class="ph-bar-label">水</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#E8560A;height:49px;"></div><span class="ph-bar-label">木</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#E8560A;height:63px;"></div><span class="ph-bar-label">金</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#34C759;height:70px;"></div><span class="ph-bar-label">土</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div class="ph-bar" style="width:100%;background:#D4940A;height:60px;"></div><span class="ph-bar-label">日</span></div>
+            </div>
+          </div>
+          <div class="ph-stats">
+            <div class="ph-stat"><p class="l">平均起床</p><p class="v" style="font-size:12px;">5:48</p><p class="d up">-12分</p></div>
+            <div class="ph-stat"><p class="l">平均睡眠</p><p class="v" style="font-size:12px;">6.8h</p><p class="d up">+0.3h</p></div>
+            <div class="ph-stat"><p class="l">歩数</p><p class="v" style="font-size:12px;">8.2k</p><p class="d down">-1.1k</p></div>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">ウィークリーレポート</div>
+      </div>
+      <!-- Phone 5: Sleep Analysis -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>7:30</span><span>85%</span></div>
+          <p class="ph-title" style="font-size: 16px;">睡眠分析</p>
+          <p class="ph-sub">昨夜 23:15 — 今朝 5:48</p>
+          <div style="margin: 8px 10px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 8px;"><span style="font-weight: 500;">睡眠ステージ</span><span style="color: #E8560A; font-weight: 700;">6h 33m</span></div>
+            <div class="ph-sleep-bar">
+              <div style="width:8%;background:#B5D4F4;"></div>
+              <div style="width:15%;background:#7B9FD4;"></div>
+              <div style="width:25%;background:#4A73B0;"></div>
+              <div style="width:12%;background:#1D4A8A;"></div>
+              <div style="width:5%;background:#B5D4F4;"></div>
+              <div style="width:18%;background:#7B9FD4;"></div>
+              <div style="width:10%;background:#4A73B0;"></div>
+              <div style="width:7%;background:#1D4A8A;"></div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+              <div style="display:flex;align-items:center;gap:3px;"><div style="width:6px;height:6px;border-radius:1px;background:#B5D4F4;"></div><span style="font-size:8px;color:#888;">覚醒</span></div>
+              <div style="display:flex;align-items:center;gap:3px;"><div style="width:6px;height:6px;border-radius:1px;background:#7B9FD4;"></div><span style="font-size:8px;color:#888;">レム</span></div>
+              <div style="display:flex;align-items:center;gap:3px;"><div style="width:6px;height:6px;border-radius:1px;background:#4A73B0;"></div><span style="font-size:8px;color:#888;">コア</span></div>
+              <div style="display:flex;align-items:center;gap:3px;"><div style="width:6px;height:6px;border-radius:1px;background:#1D4A8A;"></div><span style="font-size:8px;color:#888;">深い</span></div>
+            </div>
+          </div>
+          <div style="margin: 0 10px 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+            <div class="ph-stat"><p class="l">深い睡眠</p><p class="v" style="font-size:13px;color:#1D4A8A;">1h 15m</p></div>
+            <div class="ph-stat"><p class="l">レム睡眠</p><p class="v" style="font-size:13px;color:#7B9FD4;">2h 10m</p></div>
+            <div class="ph-stat"><p class="l">入眠時間</p><p class="v" style="font-size:13px;">12分</p><p class="d up">良好</p></div>
+            <div class="ph-stat"><p class="l">中途覚醒</p><p class="v" style="font-size:13px;">2回</p><p class="d down">やや多め</p></div>
+          </div>
+          <div class="ph-ai">
+            <div class="ph-ai-badge"><div class="ph-ai-dot">✦</div><span>AIインサイト</span></div>
+            <p>中途覚醒が2回。就寝前のスマホ使用と相関がある可能性。今夜は30分前にスマホを手放してみましょう。</p>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">睡眠分析</div>
+      </div>
+      <!-- Phone 6: Monthly Trends -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>7:30</span><span>85%</span></div>
+          <p class="ph-title" style="font-size: 16px;">月間トレンド</p>
+          <p class="ph-sub">2026年 3月</p>
+          <div style="margin: 8px 10px; background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 10px;">
+            <p style="font-size: 10px; font-weight: 500; color: #1a1a1a; margin: 0 0 6px;">達成ヒートマップ</p>
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 3px;">
+              <span style="font-size:7px;color:#aaa;text-align:center;">月</span><span style="font-size:7px;color:#aaa;text-align:center;">火</span><span style="font-size:7px;color:#aaa;text-align:center;">水</span><span style="font-size:7px;color:#aaa;text-align:center;">木</span><span style="font-size:7px;color:#aaa;text-align:center;">金</span><span style="font-size:7px;color:#aaa;text-align:center;">土</span><span style="font-size:7px;color:#aaa;text-align:center;">日</span>
+            </div>
+            <div class="ph-heatmap">
+              <div class="ph-hm-cell" style="background:#f0ebe4;"></div><div class="ph-hm-cell" style="background:#f0ebe4;"></div><div class="ph-hm-cell" style="background:#f0ebe4;"></div><div class="ph-hm-cell" style="background:#f0ebe4;"></div><div class="ph-hm-cell" style="background:#f0ebe4;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.3;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.5;"></div>
+              <div class="ph-hm-cell" style="background:#E8560A;opacity:0.6;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.4;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.8;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.7;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.9;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.6;"></div>
+              <div class="ph-hm-cell" style="background:#E8560A;opacity:0.8;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.5;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.9;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.7;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.8;"></div>
+              <div class="ph-hm-cell" style="background:#E8560A;opacity:0.9;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.6;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.9;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.7;"></div>
+              <div class="ph-hm-cell" style="background:#E8560A;opacity:0.9;"></div><div class="ph-hm-cell" style="background:#E8560A;opacity:0.8;"></div><div class="ph-hm-cell" style="background:#E8560A;"></div>
+            </div>
+          </div>
+          <p style="font-size: 10px; color: #888; margin: 0 0 4px; padding: 0 14px;">月間サマリー</p>
+          <div class="ph-list">
+            <div class="ph-li"><span style="flex:1;color:#1a1a1a;">ルーティン完了日</span><span style="color:#E8560A;font-weight:700;">26 / 31日</span></div>
+            <div class="ph-li"><span style="flex:1;color:#1a1a1a;">平均起床時刻</span><span style="font-weight:700;">5:52</span></div>
+            <div class="ph-li"><span style="flex:1;color:#1a1a1a;">獲得ポイント</span><span style="color:#D4940A;font-weight:700;">+3,240 pt</span></div>
+            <div class="ph-li"><span style="flex:1;color:#1a1a1a;">ジャーナル記入</span><span style="color:#34C759;font-weight:700;">24日</span></div>
+          </div>
+          <div class="ph-ai" style="margin-top: 8px;">
+            <div class="ph-ai-badge"><div class="ph-ai-dot">✦</div><span>月間AIレビュー</span></div>
+            <p>3月は後半2週間の安定感が素晴らしい。4月は「深い睡眠の質向上」にフォーカスしましょう。</p>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>習慣</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>記録</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>データ</div>
+          </div>
+        </div>
+        <div class="phone-label">月間トレンド</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Media & Community -->
+<section class="slide" id="slide-5a">
+  <div class="slide-inner">
+    <div class="section-num">05 — コンテンツ & コミュニティ</div>
+    <h2 class="section-title">学びと仲間が継続を支える</h2>
+    <p class="section-lead">動画コンテンツで深く学び、コミュニティで励まし合う。</p>
+    <div class="phone-row">
+      <!-- Phone: Media -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>20:30</span><span>72%</span></div>
+          <p class="ph-title" style="font-size: 16px;">学習コンテンツ</p>
+          <p class="ph-sub">監修者メソッドを動画で学ぶ</p>
+          <div style="margin: 8px 10px; border-radius: 10px; overflow: hidden; background: #1a1a1a;">
+            <div style="width: 100%; height: 100px; background: linear-gradient(135deg, #2a1a3e, #1a2a4e); display: flex; align-items: center; justify-content: center; position: relative;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+                <div style="width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 12px solid white; margin-left: 2px;"></div>
+              </div>
+              <div style="position: absolute; bottom: 6px; left: 8px; right: 8px;">
+                <p style="font-size: 10px; font-weight: 700; color: white; margin: 0;">朝5時起きを定着させる3つの秘訣</p>
+                <p style="font-size: 8px; color: rgba(255,255,255,0.7); margin: 1px 0 0;">12:34 ・ Week 1 / Lesson 3</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin: 0 10px 6px;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; margin-bottom: 3px;">
+              <span style="color: #888;">コース進捗</span>
+              <span style="color: #E8560A; font-weight: 700;">3 / 12 レッスン</span>
+            </div>
+            <div style="height: 4px; background: #f0ebe4; border-radius: 2px;"><div style="width: 25%; height: 100%; background: linear-gradient(90deg, #E8560A, #D4940A); border-radius: 2px;"></div></div>
+          </div>
+          <p style="font-size: 9px; color: #888; margin: 0 0 3px; padding: 0 14px;">Week 1 — 朝活の土台をつくる</p>
+          <div class="ph-list">
+            <div class="ph-li">
+              <div class="ph-dot-done">✓</div>
+              <div style="flex: 1;"><p style="margin: 0; color: #1a1a1a;">なぜ朝活が人生を変えるのか</p><p style="margin: 0; font-size: 8px; color: #aaa;">8:21 ・ 視聴済み</p></div>
+            </div>
+            <div class="ph-li">
+              <div class="ph-dot-done">✓</div>
+              <div style="flex: 1;"><p style="margin: 0; color: #1a1a1a;">最適な睡眠サイクルの見つけ方</p><p style="margin: 0; font-size: 8px; color: #aaa;">10:45 ・ 視聴済み</p></div>
+            </div>
+            <div class="ph-li" style="background: #FFF8F0;">
+              <div class="ph-dot-active">▶</div>
+              <div style="flex: 1;"><p style="margin: 0; color: #1a1a1a; font-weight: 500;">朝5時起きを定着させる秘訣</p><p style="margin: 0; font-size: 8px; color: #E8560A;">12:34 ・ 再生中</p></div>
+            </div>
+            <div class="ph-li">
+              <div class="ph-dot-todo"></div>
+              <div style="flex: 1;"><p style="margin: 0; color: #888;">理想のモーニングルーティン設計</p><p style="margin: 0; font-size: 8px; color: #ccc;">15:02 ・ 4/8 解放</p></div>
+            </div>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;background:#E8560A;"></div>学習</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;border:1px solid #ccc;"></div>仲間</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>設定</div>
+          </div>
+        </div>
+        <div class="phone-label">動画学習（メディア）</div>
+      </div>
+      <!-- Phone: Community -->
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-status"><span>6:15</span><span>95%</span></div>
+          <div style="padding: 10px 14px 4px; display: flex; justify-content: space-between; align-items: center;">
+            <div><p style="font-size: 16px; font-weight: 900; color: #1a1a1a; margin: 0;">コミュニティ</p><p style="font-size: 9px; color: #888; margin: 2px 0 0;">仲間と励まし合おう</p></div>
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: #E8560A; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 300;">+</div>
+          </div>
+          <div style="margin: 6px 10px 8px; background: linear-gradient(135deg, #FFF5E8, #FFF0DC); border-radius: 8px; padding: 8px 10px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="font-size: 16px;">🔥</div>
+              <div><p style="font-size: 10px; font-weight: 700; color: #E8560A; margin: 0;">今朝のチャレンジ</p><p style="font-size: 9px; color: #4a3a2a; margin: 1px 0 0;">5分間の瞑想 ・ <strong>24人</strong>達成済み</p></div>
+            </div>
+          </div>
+          <div style="margin: 0 10px; display: flex; flex-direction: column; gap: 6px;">
+            <!-- Post 1 -->
+            <div style="background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 9px;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 5px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: #E6F1FB; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: #185FA5;">YT</div>
+                <div><p style="font-size: 10px; font-weight: 500; color: #1a1a1a; margin: 0;">Yuki T.</p><p style="font-size: 8px; color: #aaa; margin: 0;">6:05</p></div>
+                <div style="margin-left: auto; background: #FFF5E8; padding: 1px 6px; border-radius: 8px;"><span style="font-size: 8px; color: #E8560A; font-weight: 500;">🔥14日</span></div>
+              </div>
+              <p style="font-size: 10px; color: #333; line-height: 1.5; margin: 0;">今朝は5時起き成功！瞑想→ジャーナルで頭すっきり。この習慣もう手放せない 💪</p>
+              <div style="display: flex; gap: 12px; margin-top: 6px; padding-top: 5px; border-top: 0.5px solid #f0f0f0; font-size: 9px; color: #888;">
+                <span>👏 12</span><span>💬 3</span>
+              </div>
+            </div>
+            <!-- Post 2 -->
+            <div style="background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 9px;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 5px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: #EAF3DE; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: #3B6D11;">MS</div>
+                <div><p style="font-size: 10px; font-weight: 500; color: #1a1a1a; margin: 0;">Mika S.</p><p style="font-size: 8px; color: #aaa; margin: 0;">6:12</p></div>
+                <div style="margin-left: auto; background: #EAF3DE; padding: 1px 6px; border-radius: 8px;"><span style="font-size: 8px; color: #3B6D11; font-weight: 500;">🌱7日</span></div>
+              </div>
+              <p style="font-size: 10px; color: #333; line-height: 1.5; margin: 0;">二度寝しそうだったけど皆の投稿見て起きられた！グループの力ってすごい 😊</p>
+              <div style="display: flex; gap: 12px; margin-top: 6px; padding-top: 5px; border-top: 0.5px solid #f0f0f0; font-size: 9px; color: #888;">
+                <span>👏 18</span><span>💬 5</span>
+              </div>
+            </div>
+            <!-- Post 3 -->
+            <div style="background: white; border: 0.5px solid #e8e8ec; border-radius: 8px; padding: 9px;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 5px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: #FAEEDA; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: #854F0B;">KN</div>
+                <div><p style="font-size: 10px; font-weight: 500; color: #1a1a1a; margin: 0;">Ken N.</p><p style="font-size: 8px; color: #aaa; margin: 0;">5:58</p></div>
+                <div style="margin-left: auto; background: #FAEEDA; padding: 1px 6px; border-radius: 8px;"><span style="font-size: 8px; color: #854F0B; font-weight: 500;">👑30日</span></div>
+              </div>
+              <p style="font-size: 10px; color: #333; line-height: 1.5; margin: 0;">30日連続達成！AIの「今日は軽めに」に何回も救われた。</p>
+              <div style="display: flex; gap: 12px; margin-top: 6px; padding-top: 5px; border-top: 0.5px solid #f0f0f0; font-size: 9px; color: #888;">
+                <span>👏 32</span><span>💬 8</span>
+              </div>
+            </div>
+          </div>
+          <div class="ph-nav">
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>ホーム</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>学習</div>
+            <div style="text-align:center;font-size:7px;color:#E8560A;font-weight:500;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:50%;background:#E8560A;"></div>仲間</div>
+            <div style="text-align:center;font-size:7px;color:#aaa;"><div style="width:14px;height:14px;margin:0 auto 1px;border-radius:3px;border:1px solid #ccc;"></div>設定</div>
+          </div>
+        </div>
+        <div class="phone-label">グループ掲示板</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="slide" id="slide-3">
+  <div class="slide-inner">
+    <div class="section-num">06 — 市場ポジション</div>
     <h2 class="section-title">「朝活 × AIコーチ」は空席</h2>
     <p class="section-lead">国内外の競合を徹底調査。このポジションはまだ誰も取っていない。</p>
     <div class="card-grid">
@@ -703,8 +1190,8 @@ body {
         <div class="card-text">Rocky.ai、Awarefy等。汎用コーチングまたはメンタルヘルス特化。朝活には特化していない。</div>
       </div>
       <div class="card">
-        <div class="card-title" style="color: var(--sunrise-2);">我々のポジション</div>
-        <div class="card-text" style="color: var(--text-primary);">朝活 × AIコーチ × ヘルスケア連携 × インフルエンサー監修メソッド。このセグメントは国内外で空白。先行者優位を取れる。</div>
+        <div class="card-title" style="color: var(--sunrise-1);">我々のポジション</div>
+        <div class="card-text">朝活 × AIコーチ × ヘルスケア連携 × インフルエンサー監修メソッド。このセグメントは国内外で空白。先行者優位を取れる。</div>
       </div>
     </div>
   </div>
@@ -713,7 +1200,7 @@ body {
 <!-- Slide 5: Business Model -->
 <section class="slide" id="slide-4">
   <div class="slide-inner">
-    <div class="section-num">04 — ビジネスモデル</div>
+    <div class="section-num">07 — ビジネスモデル</div>
     <h2 class="section-title">2つの収益エンジン</h2>
     <p class="section-lead">アプリ単体とプランCの二段構えで、広い層をカバーする。</p>
     
@@ -741,7 +1228,7 @@ body {
 <!-- Slide 6: Revenue -->
 <section class="slide" id="slide-5">
   <div class="slide-inner">
-    <div class="section-num">05 — 収益シミュレーション</div>
+    <div class="section-num">08 — 収益シミュレーション</div>
     <h2 class="section-title">年間売上 1,600万円</h2>
     <p class="section-lead">卒業生300人＋SNS3万人の既存アセットを活用した現実的な試算。</p>
 
@@ -786,7 +1273,7 @@ body {
 <!-- Slide 7: Role Split -->
 <section class="slide" id="slide-6">
   <div class="slide-inner">
-    <div class="section-num">06 — 役割分担 & レベニューシェア</div>
+    <div class="section-num">09 — 役割分担 & レベニューシェア</div>
     <h2 class="section-title">対等なパートナーシップ</h2>
     <p class="section-lead">経費を差し引いた利益を折半。シンプルで揉めない構造。</p>
 
@@ -824,7 +1311,7 @@ body {
 <!-- Slide 8: Timeline -->
 <section class="slide" id="slide-7">
   <div class="slide-inner">
-    <div class="section-num">07 — 開発ロードマップ</div>
+    <div class="section-num">10 — 開発ロードマップ</div>
     <h2 class="section-title">3ヶ月でMVPリリース</h2>
     <p class="section-lead">最速でプロダクトを市場に出し、ユーザーの反応を見ながら磨く。</p>
 
@@ -860,7 +1347,7 @@ body {
 <!-- Slide 9: Tech -->
 <section class="slide" id="slide-8">
   <div class="slide-inner">
-    <div class="section-num">08 — 技術スタック</div>
+    <div class="section-num">11 — 技術スタック</div>
     <h2 class="section-title">モダンで拡張性の高い構成</h2>
     <p class="section-lead">React Nativeで高速開発。将来のAndroid展開にも対応可能。</p>
 
@@ -929,15 +1416,15 @@ body {
     </p>
     <div style="margin-top: 48px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
       <div class="card" style="flex: 0 1 200px; text-align: center;">
-        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">3ヶ月</div>
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-1);">3ヶ月</div>
         <div class="card-text">MVP完成</div>
       </div>
       <div class="card" style="flex: 0 1 200px; text-align: center;">
-        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">1,600万</div>
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-1);">1,600万</div>
         <div class="card-text">年間売上目標</div>
       </div>
       <div class="card" style="flex: 0 1 200px; text-align: center;">
-        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">50:50</div>
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-1);">50:50</div>
         <div class="card-text">対等なパートナーシップ</div>
       </div>
     </div>
@@ -945,7 +1432,6 @@ body {
 </section>
 
 <script>
-// Navigation dots
 const slides = document.querySelectorAll('.slide');
 const navDots = document.getElementById('navDots');
 
@@ -956,7 +1442,6 @@ slides.forEach((_, i) => {
   navDots.appendChild(dot);
 });
 
-// Intersection Observer for active dot
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -970,7 +1455,6 @@ const observer = new IntersectionObserver((entries) => {
 
 slides.forEach(slide => observer.observe(slide));
 
-// Scroll-triggered animations
 const animObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
