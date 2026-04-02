@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝活AIコーチアプリ 事業計画書</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sunrise-1: #FF6B35;
+  --sunrise-2: #F7C948;
+  --sunrise-3: #FFA62B;
+  --dawn-dark: #1a1a2e;
+  --dawn-mid: #16213e;
+  --dawn-light: #0f3460;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a8b4c4;
+  --text-accent: #F7C948;
+  --card-bg: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.08);
+  --glow: rgba(247,201,72,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--dawn-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Slide System */
+.slide {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 60px 40px;
+  overflow: hidden;
+}
+
+.slide-inner {
+  max-width: 1100px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+
+/* Navigation */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.nav-dot:hover, .nav-dot.active {
+  background: var(--sunrise-2);
+  transform: scale(1.4);
+  box-shadow: 0 0 12px var(--glow);
+}
+
+/* Slide 1 - Cover */
+.slide-cover {
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #2a1a4e 70%, #3a1a3e 100%);
+}
+
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 120%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(255,107,53,0.25) 0%, rgba(247,201,72,0.1) 40%, transparent 70%);
+  animation: sunriseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes sunriseGlow {
+  0% { opacity: 0.6; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(-10px); }
+}
+
+.cover-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sunrise-2);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.cover-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.cover-title .accent {
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cover-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 600px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.cover-meta {
+  margin-top: 48px;
+  display: flex;
+  gap: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.9s;
+}
+
+.cover-meta-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.cover-meta-item span {
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Headers */
+.section-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--sunrise-3);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  border-color: rgba(247,201,72,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Revenue Table */
+.revenue-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.revenue-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.revenue-table td {
+  padding: 18px 20px;
+  background: var(--card-bg);
+  font-size: 15px;
+  border: none;
+}
+
+.revenue-table tr td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.revenue-table tr td:last-child {
+  border-radius: 0 12px 12px 0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.revenue-total {
+  margin-top: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.revenue-total-label {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.revenue-total-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--sunrise-2), var(--sunrise-1), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -34px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sunrise-2);
+  box-shadow: 0 0 16px rgba(247,201,72,0.5);
+}
+
+.timeline-period {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sunrise-3);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.timeline-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Role Split */
+.role-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.role-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.role-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.role-card.role-influencer::before {
+  background: linear-gradient(90deg, var(--sunrise-1), var(--sunrise-2));
+}
+
+.role-card.role-dev::before {
+  background: linear-gradient(90deg, #4ecdc4, #44a08d);
+}
+
+.role-name {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.role-list {
+  list-style: none;
+}
+
+.role-list li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.role-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sunrise-2);
+  font-weight: 700;
+}
+
+/* Profit Box */
+.profit-box {
+  background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(247,201,72,0.1));
+  border: 1px solid rgba(247,201,72,0.2);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 32px;
+}
+
+.profit-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.profit-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profit-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+/* Feature highlight */
+.feature-highlight {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.feature-pill {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.feature-pill-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.feature-pill-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Funnel */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.funnel-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.funnel-step.f1 {
+  width: 90%;
+  background: rgba(247,201,72,0.1);
+  border: 1px solid rgba(247,201,72,0.2);
+  color: var(--sunrise-2);
+}
+
+.funnel-step.f2 {
+  width: 70%;
+  background: rgba(255,166,43,0.1);
+  border: 1px solid rgba(255,166,43,0.2);
+  color: var(--sunrise-3);
+}
+
+.funnel-step.f3 {
+  width: 50%;
+  background: rgba(255,107,53,0.15);
+  border: 1px solid rgba(255,107,53,0.3);
+  color: var(--sunrise-1);
+}
+
+.funnel-arrow {
+  font-size: 20px;
+  color: var(--text-secondary);
+}
+
+/* Tech stack */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.tech-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tech-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tech-value {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.tech-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* CTA */
+.slide-cta {
+  background: linear-gradient(135deg, #1a1a3e 0%, #2a1a4e 50%, #1a1a2e 100%);
+}
+
+.cta-text {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cta-text .accent {
+  background: linear-gradient(135deg, var(--sunrise-1), var(--sunrise-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-sub {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Slide BGs */
+.slide:nth-child(even) {
+  background: linear-gradient(160deg, #0f0f23 0%, #1a1a2e 100%);
+}
+
+.slide:nth-child(odd) {
+  background: linear-gradient(160deg, #141428 0%, #1e1e38 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 40px 24px; }
+  .role-split { grid-template-columns: 1fr; }
+  .feature-highlight { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr; }
+  .nav-dots { right: 12px; }
+  .cover-meta { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation Dots -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- Slide 1: Cover -->
+<section class="slide slide-cover" id="slide-0">
+  <div class="slide-inner">
+    <div class="cover-tag">Business Plan 2026</div>
+    <h1 class="cover-title">
+      毎朝5分で<br><span class="accent">人生を変える</span><br>AIコーチ
+    </h1>
+    <p class="cover-subtitle">
+      朝活 × AI × ヘルスケア連携。<br>
+      国内初のポジションを取る、朝活特化AIコーチングアプリの事業計画。
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">ターゲット <span>年間売上 1,600万円</span></div>
+      <div class="cover-meta-item">リリース <span>3ヶ月以内</span></div>
+      <div class="cover-meta-item">プラットフォーム <span>iOS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 2: Problem -->
+<section class="slide" id="slide-1">
+  <div class="slide-inner">
+    <div class="section-num">01 — 課題</div>
+    <h2 class="section-title">朝活は「続かない」が最大の壁</h2>
+    <p class="section-lead">既存コミュニティの卒業生が抱えるリアルな声。プラン終了後に習慣が途切れ、相談相手もいなくなる。</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <div class="card-title">プラン終了後に続かない</div>
+        <div class="card-text">高額プラン（年60万・3ヶ月20万）の卒業生が、プラン終了と同時に朝活を辞めてしまう。仕組みがないと人は続けられない。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <div class="card-title">壁打ちできる相手がいない</div>
+        <div class="card-text">一人で朝活を続けると、迷いが生じた時に相談できる相手がいない。モチベーションが落ちた時の支えがない。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <div class="card-title">既存アプリは記録するだけ</div>
+        <div class="card-text">Habitify、Streaks等の習慣アプリは「チェックを入れるだけ」。コーチングもパーソナライズもない。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 3: Solution -->
+<section class="slide" id="slide-2">
+  <div class="slide-inner">
+    <div class="section-num">02 — ソリューション</div>
+    <h2 class="section-title">AIが毎朝、あなた専属のコーチになる</h2>
+    <p class="section-lead">記録ツールではなく、行動を変えるコーチングプラットフォーム。</p>
+    <div class="feature-highlight">
+      <div class="feature-pill">
+        <div class="feature-pill-icon">🧠</div>
+        <div class="feature-pill-text">AIコーチング</div>
+      </div>
+      <div class="feature-pill">
+        <div class="feature-pill-icon">⌚</div>
+        <div class="feature-pill-text">HealthKit連携</div>
+      </div>
+      <div class="feature-pill">
+        <div class="feature-pill-icon">📓</div>
+        <div class="feature-pill-text">ジャーナル</div>
+      </div>
+      <div class="feature-pill">
+        <div class="feature-pill-icon">🎮</div>
+        <div class="feature-pill-text">ゲーミフィケーション</div>
+      </div>
+      <div class="feature-pill">
+        <div class="feature-pill-icon">🔔</div>
+        <div class="feature-pill-text">Duolingo式通知</div>
+      </div>
+      <div class="feature-pill">
+        <div class="feature-pill-icon">☀️</div>
+        <div class="feature-pill-text">朝ルーティン</div>
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">💡 他アプリとの決定的な違い</div>
+        <div class="card-text">睡眠データ・心拍数・歩数をAIが読み取り、「昨夜は深い睡眠が少なかったから、今朝は瞑想を長めに」と具体的な行動を提案。ジャーナルの内容も翌朝のコーチングに反映。データを見せるだけでなく、行動提案に変える。</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏆 ゲームのように楽しく続く</div>
+        <div class="card-text">ポイント・ストリーク・レベルアップで達成感を演出。年間→四半期→月→週→日の目標が連動し、大きなビジョンに近づいている実感を毎日感じられる。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 4: Market Position -->
+<section class="slide" id="slide-3">
+  <div class="slide-inner">
+    <div class="section-num">03 — 市場ポジション</div>
+    <h2 class="section-title">「朝活 × AIコーチ」は空席</h2>
+    <p class="section-lead">国内外の競合を徹底調査。このポジションはまだ誰も取っていない。</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">既存の習慣アプリ</div>
+        <div class="card-text">Habitify、Streaks、Routinery等。汎用的な記録ツール。AIなし、ヘルスケア連携なし。単価も低い（年5,000円以下）。</div>
+      </div>
+      <div class="card">
+        <div class="card-title">AIコーチアプリ</div>
+        <div class="card-text">Rocky.ai、Awarefy等。汎用コーチングまたはメンタルヘルス特化。朝活には特化していない。</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color: var(--sunrise-2);">我々のポジション</div>
+        <div class="card-text" style="color: var(--text-primary);">朝活 × AIコーチ × ヘルスケア連携 × インフルエンサー監修メソッド。このセグメントは国内外で空白。先行者優位を取れる。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Business Model -->
+<section class="slide" id="slide-4">
+  <div class="slide-inner">
+    <div class="section-num">04 — ビジネスモデル</div>
+    <h2 class="section-title">2つの収益エンジン</h2>
+    <p class="section-lead">アプリ単体とプランCの二段構えで、広い層をカバーする。</p>
+    
+    <div class="funnel">
+      <div class="funnel-step f1">📱 SNSフォロワー 3万人 ＋ コミュニティ卒業生 300人以上</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step f2">🔓 アプリ単体プラン — 月額980円 / 年額7,800円</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step f3">🚀 プランC — 月額30,000円（アプリ全機能 + 月1グループセッション）</div>
+    </div>
+
+    <div class="card-grid" style="margin-top: 24px;">
+      <div class="card">
+        <div class="card-title">アプリ単体プラン</div>
+        <div class="card-text">「3万は高い」層もアプリで回収。プランCへのアップセル導線になる。無料版で体験→有料転換のファネル。</div>
+      </div>
+      <div class="card">
+        <div class="card-title">プランC（コアビジネス）</div>
+        <div class="card-text">プランA（年60万）・B（3ヶ月20万）の卒業生の受け皿。月3万で継続的にコーチングとコミュニティを提供。AIが24時間壁打ち対応。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Revenue -->
+<section class="slide" id="slide-5">
+  <div class="slide-inner">
+    <div class="section-num">05 — 収益シミュレーション</div>
+    <h2 class="section-title">年間売上 1,600万円</h2>
+    <p class="section-lead">卒業生300人＋SNS3万人の既存アセットを活用した現実的な試算。</p>
+
+    <table class="revenue-table">
+      <thead>
+        <tr>
+          <th>収益源</th>
+          <th>単価</th>
+          <th>目標人数</th>
+          <th>年間売上</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>プランC（月額3万円）</td>
+          <td>年36万/人</td>
+          <td>年間平均 40人</td>
+          <td>1,440万</td>
+        </tr>
+        <tr>
+          <td>アプリ単体（年額7,800円）</td>
+          <td>年7,800/人</td>
+          <td>200人</td>
+          <td>156万</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="revenue-total">
+      <span class="revenue-total-label">年間売上合計</span>
+      <span class="revenue-total-num">¥15,960,000</span>
+    </div>
+
+    <div class="profit-box">
+      <div class="profit-label">経費差引後の分配可能利益</div>
+      <div class="profit-amount">¥14,640,000</div>
+      <div class="profit-note">経費（AI運用・サーバー・Apple手数料等）約136万円控除後 → 折半で各 約730万円</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 7: Role Split -->
+<section class="slide" id="slide-6">
+  <div class="slide-inner">
+    <div class="section-num">06 — 役割分担 & レベニューシェア</div>
+    <h2 class="section-title">対等なパートナーシップ</h2>
+    <p class="section-lead">経費を差し引いた利益を折半。シンプルで揉めない構造。</p>
+
+    <div class="role-split">
+      <div class="role-card role-influencer">
+        <div class="role-name">🎙️ インフルエンサー</div>
+        <ul class="role-list">
+          <li>朝活メソッドの監修・コンテンツ提供</li>
+          <li>月1回グループセッションの実施</li>
+          <li>SNSでの発信・プロモーション</li>
+          <li>卒業生への再アプローチ</li>
+          <li>ブランド・信頼の提供</li>
+        </ul>
+      </div>
+      <div class="role-card role-dev">
+        <div class="role-name">💻 開発パートナー</div>
+        <ul class="role-list">
+          <li>アプリの設計・開発・運用</li>
+          <li>AIコーチングの設計・チューニング</li>
+          <li>バックエンド・インフラの管理</li>
+          <li>App Store対応・課金システム</li>
+          <li>データ分析・改善</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="profit-box" style="margin-top: 32px;">
+      <div class="profit-label">レベニューシェア</div>
+      <div class="profit-amount" style="font-size: 36px;">経費差引後 50 : 50</div>
+      <div class="profit-note">各パートナー 年間約730万円（1年目目標）</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 8: Timeline -->
+<section class="slide" id="slide-7">
+  <div class="slide-inner">
+    <div class="section-num">07 — 開発ロードマップ</div>
+    <h2 class="section-title">3ヶ月でMVPリリース</h2>
+    <p class="section-lead">最速でプロダクトを市場に出し、ユーザーの反応を見ながら磨く。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Month 1</div>
+        <div class="timeline-title">基盤構築 + 朝ルーティン</div>
+        <div class="timeline-desc">プロジェクト設計、認証・データ同期、朝ルーティン画面（ステップ管理・タイマー）、HealthKit連携（睡眠・歩数・心拍）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Month 2</div>
+        <div class="timeline-title">AI + ジャーナル + ゲーミフィケーション</div>
+        <div class="timeline-desc">AIモーニングコーチ実装、ジャーナル機能、習慣トラッカー連動、ポイント・ストリーク・進捗バー、能動的通知</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Month 3</div>
+        <div class="timeline-title">仕上げ + リリース</div>
+        <div class="timeline-desc">課金実装（StoreKit）、UI磨き込み、TestFlight先行体験、App Store審査提出</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Month 4-6</div>
+        <div class="timeline-title">成長フェーズ</div>
+        <div class="timeline-desc">コミュニティ機能（チャット）、メディア動画コンテンツ、ゲーミフィケーション強化、ビジョンマップ機能</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 9: Tech -->
+<section class="slide" id="slide-8">
+  <div class="slide-inner">
+    <div class="section-num">08 — 技術スタック</div>
+    <h2 class="section-title">モダンで拡張性の高い構成</h2>
+    <p class="section-lead">React Nativeで高速開発。将来のAndroid展開にも対応可能。</p>
+
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-icon">⚛️</div>
+        <div>
+          <div class="tech-label">フロントエンド</div>
+          <div class="tech-value">React Native + TypeScript</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">🗄️</div>
+        <div>
+          <div class="tech-label">バックエンド</div>
+          <div class="tech-value">Supabase (Auth / DB / Edge Functions)</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">🤖</div>
+        <div>
+          <div class="tech-label">AIエンジン</div>
+          <div class="tech-value">Claude API (Haiku + Sonnet)</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">❤️</div>
+        <div>
+          <div class="tech-label">ヘルスケア</div>
+          <div class="tech-value">HealthKit (react-native-health)</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">💳</div>
+        <div>
+          <div class="tech-label">課金</div>
+          <div class="tech-value">StoreKit 2 (react-native-iap)</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">🔔</div>
+        <div>
+          <div class="tech-label">通知</div>
+          <div class="tech-value">Firebase Cloud Messaging</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px;">
+      <div class="card-title">🔮 将来の拡張</div>
+      <div class="card-text">Screen Time API（アプリブロック機能）はSwiftネイティブモジュールとして追加予定。Android版はReact Nativeのコア資産を活用して展開可能。</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 10: CTA -->
+<section class="slide slide-cta" id="slide-9">
+  <div class="slide-inner" style="text-align: center;">
+    <div class="section-num" style="text-align: center;">LET'S BUILD THIS</div>
+    <div class="cta-text">
+      朝を変える人を、<br><span class="accent">一緒に増やそう。</span>
+    </div>
+    <p class="cta-sub">
+      3万人のフォロワー × 300人の卒業生 × AIテクノロジー。<br>
+      このチームなら、朝活の未来を作れる。
+    </p>
+    <div style="margin-top: 48px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+      <div class="card" style="flex: 0 1 200px; text-align: center;">
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">3ヶ月</div>
+        <div class="card-text">MVP完成</div>
+      </div>
+      <div class="card" style="flex: 0 1 200px; text-align: center;">
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">1,600万</div>
+        <div class="card-text">年間売上目標</div>
+      </div>
+      <div class="card" style="flex: 0 1 200px; text-align: center;">
+        <div style="font-size: 32px; font-family: 'Outfit'; font-weight: 900; color: var(--sunrise-2);">50:50</div>
+        <div class="card-text">対等なパートナーシップ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Navigation dots
+const slides = document.querySelectorAll('.slide');
+const navDots = document.getElementById('navDots');
+
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot';
+  dot.onclick = () => slides[i].scrollIntoView({ behavior: 'smooth' });
+  navDots.appendChild(dot);
+});
+
+// Intersection Observer for active dot
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = Array.from(slides).indexOf(entry.target);
+      document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+
+slides.forEach(slide => observer.observe(slide));
+
+// Scroll-triggered animations
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card, .timeline-item, .role-card, .tech-item, .funnel-step, .feature-pill, .profit-box').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'all 0.6s ease';
+  animObserver.observe(el);
+});
+</script>
+</body>
+</html>
